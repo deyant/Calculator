@@ -15,8 +15,6 @@
     <description>Calculator</description>
     <properties>
         <java.version>17</java.version>
-<!--        <start-class>com.example.calculator.CalculatorApplication</start-class>-->
-
         <swagger-annotations-version>1.5.22</swagger-annotations-version>
         <jersey-version>2.27</jersey-version>
         <jackson-version>2.10.2</jackson-version>
@@ -202,14 +200,9 @@
                             <modelNameSuffix>Dto</modelNameSuffix>
                             <configOptions>
                                 <delegatePattern>true</delegatePattern>
-                                <!--                                <title>OpenAPI Spring</title>-->
                                 <interfaceOnly>false</interfaceOnly>
-                                <!--                                <snapshotVersion>true</snapshotVersion>-->
-                                <!--                                <apiFirst>true</apiFirst>-->
-
                                 <configPackage>com.example.calculator.configuration</configPackage>
                                 <useSpringController>true</useSpringController>
-<!--                                <performBeanValidation>true</performBeanValidation>-->
                                 <unhandledException>false</unhandledException>
                             </configOptions>
                         </configuration>
