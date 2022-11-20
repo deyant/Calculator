@@ -15,6 +15,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.math.BigDecimal;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Currency;
 import java.util.HashMap;
@@ -71,11 +72,14 @@ public class DocumentsFileParserService {
      * @throws DocumentValidationException If document line contains invalid data.
      * @throws IllegalArgumentException    If CSV structure is invalid.
      */
-    public Map<String, Customer> parseDocumentsCsvInputStream(InputStream inputStream, String filterVatNumber)
+    public Map<String, Customer> parseDocumentsCsvInputStream(final InputStream inputStream,
+                                                              final String filterVatNumber)
             throws IOException, DocumentValidationException, IllegalArgumentException {
         HashMap<String, Customer> customersMap = new HashMap<>();
 
-        try (Reader reader = new InputStreamReader(inputStream); CSVParser parser = csvFormat.parse(reader)) {
+        try (Reader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+             CSVParser parser = csvFormat.parse(reader)) {
+
             for (final CSVRecord record : parser) {
                 final String vatNumber = record.get(CsvHeader.VAT_NUMBER.toString());
                 if (filterVatNumber != null && !filterVatNumber.equals(vatNumber)) {
